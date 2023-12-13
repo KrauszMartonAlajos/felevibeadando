@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,15 +25,12 @@ namespace Kör_KM
         {
             panel1.Paint += KoordinataRendszerRajz;
             körök.Add(new KOR(50,50,100,1));
-            körök.Add(new KOR(100, 400, 50, 2));
+            körök.Add(new KOR(50, 200, 50, 2));
             körök.Add(new KOR(250, 50, 100, 3));
             OrigoMaxTav();
             
             ComboBoxbaPakol();
             //ide kerül a fájlbeolvasás
-            //példányosítása a köröknek
-            //itt rajzoljuk ki a koordináta rendszert
-            //a körök sorszám alapján lesznek megkülönböztetve
         }
 
         public static double OsszesTerulet()
@@ -67,12 +64,17 @@ namespace Kör_KM
 
         private static List<List<KOR>> korMatrix = new List<List<KOR>>();
 
-        private static void ErintosKorok()
+        private void ErintosKorok()
         {
+            
             for (int i = 0; i < körök.Count; i++)
             {
                 AktKorMitErint(körök[i]);
-            }            
+            }
+            for (int i = 0; i < korMatrix.Count(); i++)
+            {
+                listBox2.Items.Add(String.Format(korMatrix[i][0].sorszam + " <-Érinti-> " + korMatrix[i][1].sorszam));
+            }
         }
 
         private static void AktKorMitErint(KOR kor)
@@ -152,6 +154,7 @@ namespace Kör_KM
                 
                 listBox1.Items.Add(körök[i].ToString());
             }
+            //listBox2.Items.Clear();
         }
         private void kor_rajzolas(int x, int y,int r, int sorszam)
         {
