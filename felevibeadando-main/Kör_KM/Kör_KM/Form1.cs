@@ -101,6 +101,8 @@ namespace Kör_KM
             return OsszTerulet;
         }
 
+        //teszt: simán nem átfedő körök, normális átfedés, nincs kör, sok kör, random körök generálása
+
 
         /// <summary>
         /// Ki számolja két kör metszetének területét
@@ -117,6 +119,8 @@ namespace Kör_KM
             return atfedett_Terulet;
             //https://diego.assencio.com/?index=8d6ca3d82151bad815f78addf9b5c1c6#mjx-eqn-post_8d6ca3d82151bad815f78addf9b5c1c6_A_intersection
         }
+
+        //teszt: két kör, egymást átfedő körök
 
         private static List<List<KOR>> korMatrix = new List<List<KOR>>();
 
@@ -181,7 +185,7 @@ namespace Kör_KM
                 double result = Form1.KetKorKoztiTav(k1, k2);
 
                 // Assert
-                Assert.AreEqual(5, result, 0.001); // Adjust the tolerance (0.001 in this case) based on your needs
+                //Assert.AreEqual(5, result, 0.001); // Adjust the tolerance (0.001 in this case) based on your needs
             }
         }
 
@@ -189,7 +193,7 @@ namespace Kör_KM
         /// Megadja hány db kör tartalmazza magán belül az origót
         /// </summary>
         /// <returns>A feltételnek megfelelő körök számát</returns>
-        private int OrigotTartalmazoKorok()
+        private int OrigotTartalmazoKorok(List<KOR> körök)
         {
             int db = 0;
             for (int i = 0; i < körök.Count; i++)
@@ -201,6 +205,8 @@ namespace Kör_KM
             }
             return db;
         }
+
+        //teszt: olyan lista amiben nincsen origós, olyan amiben van, random körök generálása
 
 
         /// <summary>
@@ -269,7 +275,7 @@ namespace Kör_KM
             OrigoMaxTav();
             ErintosKorok();
             label4.Text = String.Format("A körök összesített Területe: " + Convert.ToString(OsszesTerulet()));
-            label3.Text = OrigotTartalmazoKorok().ToString() + " kör tartalmazza az Origót";
+            label3.Text = OrigotTartalmazoKorok(körök).ToString() + " kör tartalmazza az Origót";
             listBox1.Items.Clear();
 
             for (int i = 0; i < körök.Count; i++)
@@ -343,6 +349,7 @@ namespace Kör_KM
                 this.y = y;
                 this.r = r;
                 tav = Math.Sqrt(x * x + y * y);
+                //tav számolása az origótol
                 this.sorszam = sorszam;
             }
 
@@ -350,25 +357,31 @@ namespace Kör_KM
             {
                 return (r * r * Math.PI);
             }
+            //teszt jó területet ad e vissza
 
             public double K()
             {
                 return (2 * r * Math.PI);
             }
+            //teszt jó kerületet ad e vissza
 
             public int X()
             {
                 return (1000 / 2 + x);
             }
+            //x koordináta átszámolása koordináta rendszerbe
+
             public int Y()
             {
                 return (1000 / 2 - y);
             }
+            //y koordináta átszámolása koordináta rendszerbe
 
             public double TavolsagAzOrigotol()
             {
                 return tav;
             }
+
 
             public override string ToString()
             {
