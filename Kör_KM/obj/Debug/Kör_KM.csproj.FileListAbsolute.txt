@@ -1,0 +1,26 @@
+C:\Users\xboxh\Desktop\temp2\Kör_KM\Kör_KM\bin\Debug\Kör_KM.exe.config
+C:\Users\xboxh\Desktop\temp2\Kör_KM\Kör_KM\bin\Debug\Kör_KM.exe
+C:\Users\xboxh\Desktop\temp2\Kör_KM\Kör_KM\bin\Debug\Kör_KM.pdb
+C:\Users\xboxh\Desktop\temp2\Kör_KM\Kör_KM\obj\Debug\Kör_KM.csproj.AssemblyReference.cache
+C:\Users\xboxh\Desktop\temp2\Kör_KM\Kör_KM\obj\Debug\Kör_KM.Properties.Resources.resources
+C:\Users\xboxh\Desktop\temp2\Kör_KM\Kör_KM\obj\Debug\Kör_KM.csproj.GenerateResource.cache
+C:\Users\xboxh\Desktop\temp2\Kör_KM\Kör_KM\obj\Debug\Kör_KM.csproj.CoreCompileInputs.cache
+C:\Users\xboxh\Desktop\temp2\Kör_KM\Kör_KM\obj\Debug\Kör_KM.exe
+C:\Users\xboxh\Desktop\temp2\Kör_KM\Kör_KM\obj\Debug\Kör_KM.pdb
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\bin\Debug\Kör_KM.exe.config
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\bin\Debug\Kör_KM.exe
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\bin\Debug\Kör_KM.pdb
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\obj\Debug\Kör_KM.csproj.AssemblyReference.cache
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\obj\Debug\Kör_KM.Properties.Resources.resources
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\obj\Debug\Kör_KM.csproj.GenerateResource.cache
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\obj\Debug\Kör_KM.csproj.CoreCompileInputs.cache
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\obj\Debug\Kör_KM.exe
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\obj\Debug\Kör_KM.pdb
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\obj\Debug\Kör_KM.Form1.resources
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\bin\Debug\NUnit3.TestAdapter.dll
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\bin\Debug\NUnit3.TestAdapter.pdb
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\bin\Debug\nunit.engine.dll
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\bin\Debug\nunit.engine.api.dll
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\bin\Debug\nunit.framework.dll
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\bin\Debug\nunit.framework.xml
+C:\Users\xboxh\Desktop\fél évi beadandó\Kör_KM\Kör_KM\obj\Debug\Kör_KM.csproj.CopyComplete
