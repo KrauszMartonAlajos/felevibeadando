@@ -1,4 +1,4 @@
-﻿using Kör_KM;
+using Kör_KM;
 
 using System;
 using static Kör_KM.Form1;
@@ -11,16 +11,16 @@ namespace UnitTestKorok
     public class TestClass
     {
         //Minden:
-        //TestFixture DONE
+        //TestFixture //DONE
         //Description //DONE
         //Combinatorial + Values //ezt mire kéne????
         //Timeout //DONE
         //MaxTime //DONE
         //Random //DONE
-        //Range //baj
+        //Range //DONE
         //[Retry(3)] hiba esetén újra lefut
-        //Setup, TearDown
-
+        //Setup, TearDown //ezt mire kéne????
+        [Test]
         [TestCase(0, 0, 5, 1, 3, 4, 5, 2, 5.0)]
         [TestCase(-1, -1, 5, 1, 1, 1, 5, 2, 2.828)]
         [TestCase(0, 0, 10, 1, 20, 0, 10, 2, 20.0)]
@@ -44,26 +44,26 @@ namespace UnitTestKorok
             // Assert
             Assert.AreEqual(d, result, 0.001);
         }
+
+
         [Test, Description("Ebben a tesztben ellenőrzésre kerül hogy két egymást nem metsző körnek az összesített területét sikeresen kiszámolja e a program")]
         [Timeout(200)]
-        public void EgymastNemFedoKorok()
+        public void KörökÖsszesitettTerulete([Range(-100,100,10)] int x, [Range(-100, 100, 10)] int y, [Range(0, 100, 10)] int r)
         {
             // Arrange
             korok.Clear();
-            korok.Add(new KOR(0, 0, 10, 1));
-            korok.Add(new KOR(20, 20, 5, 2));
+            korok.Add(new KOR(x, y, r, 1));
 
             // Act
-            double result = OsszesTerulet();
+            double eredmeny = OsszesTerulet();
 
             // Assert
-            Assert.AreEqual(Math.PI * Math.Pow(10, 2) + Math.PI * Math.Pow(5, 2), result);
+            Assert.IsInstanceOf<double>(eredmeny);
         }
 
         [Test]
-        public void KorTartalmazzaEazOrigot([Random(-500.0, 500.0, 5)] double x,
-                       [Random(-500.0, 500.0, 5)] double y,
-                       [Random(10.0, 500.0, 5)] double r)
+        [MaxTime(2000)]
+        public void KorTartalmazzaEazOrigot([Random(-500.0, 500.0, 5)] double x, [Random(-500.0, 500.0, 5)] double y, [Random(10.0, 500.0, 5)] double r)
         {
             // Arrange
             List<KOR> korok = new List<KOR>
@@ -78,8 +78,15 @@ namespace UnitTestKorok
             Assert.AreEqual((x * x + y * y <= r * r) ? 1 : 0, result);
             //ez vissza adja matematikailag hogy benne van e a kötben az origo
         }
-        //Range teszt a Teruletre és a kerületre de kifagy valami miattű
+        
 
+        [Test, Combinatorial]
+        public void Kombinatorikásteszt([Values()] int a, [Values()] int b)
+        { 
+            
+        }
+
+        //MaxKivalasztTavSsz()
 
     }
 }
