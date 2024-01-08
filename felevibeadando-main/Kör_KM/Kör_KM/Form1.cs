@@ -18,7 +18,7 @@ namespace Kör_KM
     public partial class Form1 : Form
     {
 
-        static List<KOR> körök = new List<KOR>();
+        static List<KOR> korok = new List<KOR>();
 
         public Form1()
         {
@@ -66,7 +66,7 @@ namespace Kör_KM
             while (!r.EndOfStream)
             {
                 string[] temp = r.ReadLine().Split(' ');
-                körök.Add(new KOR(Convert.ToInt32(temp[0]), Convert.ToInt32(temp[1]), Convert.ToInt32(temp[2]), n + 1));
+                korok.Add(new KOR(Convert.ToInt32(temp[0]), Convert.ToInt32(temp[1]), Convert.ToInt32(temp[2]), n + 1));
                 n++;
             }
         }
@@ -82,18 +82,18 @@ namespace Kör_KM
         {
             double OsszTerulet = 0.0;
 
-            for (int i = 0; i < körök.Count; i++)
+            for (int i = 0; i < korok.Count; i++)
             {
-                double aktkor_terulet = Math.PI * Math.Pow(körök[i].r, 2); //fv
+                double aktkor_terulet =korok[i].T(); //fv
                 OsszTerulet += aktkor_terulet;
 
-                for (int j = i + 1; j < körök.Count; j++)
+                for (int j = i + 1; j < korok.Count; j++)
                 {
-                    double tavketkorkozott = KetKorKoztiTav(körök[j], körök[i]);
+                    double tavketkorkozott = KetKorKoztiTav(korok[j], korok[i]);
 
-                    if (tavketkorkozott < körök[i].r + körök[j].r)
+                    if (tavketkorkozott < korok[i].r + korok[j].r)
                     {
-                        OsszTerulet -= AtfedettTerulet(körök[i].r, körök[j].r, tavketkorkozott);
+                        OsszTerulet -= AtfedettTerulet(korok[i].r, korok[j].r, tavketkorkozott);
                     }
                 }
             }
@@ -132,9 +132,9 @@ namespace Kör_KM
         private void ErintosKorok()
         {
             korMatrix.Clear();
-            for (int i = 0; i < körök.Count; i++) //fv
+            for (int i = 0; i < korok.Count; i++) //fv
             {
-                AktKorMitErint(körök[i]);
+                AktKorMitErint(korok[i]);
             }
             listBox2.Items.Clear();
 
@@ -150,12 +150,12 @@ namespace Kör_KM
         /// <param name="kor">Az akruálisan vizsgált kör</param>
         private static void AktKorMitErint(KOR kor)
         {
-            for (int i = 0; i < körök.Count; i++)
+            for (int i = 0; i < korok.Count; i++)
             {
-                double tav = KetKorKoztiTav(körök[i],kor);
-                if (tav != 0 && (tav == (kor.r + körök[i].r)))
+                double tav = KetKorKoztiTav(korok[i],kor);
+                if (tav != 0 && (tav == (kor.r + korok[i].r)))
                 {
-                    korMatrix.Add(new List<KOR>() { kor, körök[i] });
+                    korMatrix.Add(new List<KOR>() { kor, korok[i] });
                 }
             }
         }
@@ -213,18 +213,28 @@ namespace Kör_KM
         /// Megadja melyik kör van a legtávolabb az origó ponttól
         /// </summary>
         private void OrigoMaxTav()
+        {            
+            label5.Text = String.Format(MaxKivalasztTavSsz() + "-es sorszámú kör van a legtávolabb az origótól");
+        }
+
+
+        /// <summary>
+        /// Megadja melyik kör van a legtávolabb az origó ponttól
+        /// </summary>
+        /// <returns>az origótól legtávolabb lévő kör sorszáma</returns>
+        private int MaxKivalasztTavSsz()
         {
-            double kor = 0; //fv
+            double kor = 0; 
             int ssz = 0;
-            for (int i = 0; i < körök.Count; i++)
+            for (int i = 0; i < korok.Count; i++)
             {
-                if (körök[i].tav > kor)
+                if (korok[i].tav > kor)
                 {
-                    kor = körök[i].tav;
-                    ssz = körök[i].sorszam;
+                    kor = korok[i].tav;
+                    ssz = korok[i].sorszam;
                 }
             }
-            label5.Text = String.Format(ssz + "-es sorszámú kör van a legtávolabb az origótól");
+            return ssz;
         }
 
         /// <summary>
@@ -232,10 +242,10 @@ namespace Kör_KM
         /// </summary>
         private void ComboBoxbaPakol()
         {
-            for (int i = 0; i < körök.Count; i++)
+            for (int i = 0; i < korok.Count; i++)
             {
-                comboBox1.Items.Add(String.Format(Convert.ToString(körök[i].sorszam) + " Kör"));
-                comboBox2.Items.Add(String.Format(Convert.ToString(körök[i].sorszam) + " Kör"));
+                comboBox1.Items.Add(String.Format(Convert.ToString(korok[i].sorszam) + " Kör"));
+                comboBox2.Items.Add(String.Format(Convert.ToString(korok[i].sorszam) + " Kör"));
             }
         }
 
@@ -275,13 +285,14 @@ namespace Kör_KM
             OrigoMaxTav();
             ErintosKorok();
             label4.Text = String.Format("A körök összesített Területe: " + Convert.ToString(OsszesTerulet()));
-            label3.Text = OrigotTartalmazoKorok(körök).ToString() + " kör tartalmazza az Origót";
+            label3.Text = OrigotTartalmazoKorok(korok).ToString() + " kör tartalmazza az Origót";
+
             listBox1.Items.Clear();
 
-            for (int i = 0; i < körök.Count; i++)
+            for (int i = 0; i < korok.Count; i++)
             {
-                kor_rajzolas(körök[i].X(), körök[i].Y(), körök[i].r, körök[i].sorszam);
-                listBox1.Items.Add(körök[i].ToString());
+                kor_rajzolas(korok[i].X(), korok[i].Y(), korok[i].r, korok[i].sorszam);
+                listBox1.Items.Add(korok[i].ToString());
             }
             korok_rajz.Enabled = false;
         }
@@ -317,7 +328,7 @@ namespace Kör_KM
         {
             try
             {
-                double tav = KetKorKoztiTav(körök[comboBox1.SelectedIndex], körök[comboBox2.SelectedIndex]);
+                double tav = KetKorKoztiTav(korok[comboBox1.SelectedIndex], korok[comboBox2.SelectedIndex]);
                 tavolsagaketkornek.Text = String.Format("A két kiválasztott kör távolsága: " + Convert.ToString(tav));
             }
             catch
@@ -330,7 +341,7 @@ namespace Kör_KM
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            körök.Clear();           
+            korok.Clear();           
             MessageBox.Show("Adatok sikeresen felvéve");
         }
 
@@ -352,6 +363,7 @@ namespace Kör_KM
                 //tav számolása az origótol
                 this.sorszam = sorszam;
             }
+
 
             public double T()
             {
@@ -404,7 +416,7 @@ namespace Kör_KM
         /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
-            körök.Clear();
+            korok.Clear();
             korok_rajz.Enabled = true;
             if (s % 2 == 0)
             { 
@@ -431,19 +443,54 @@ namespace Kör_KM
             {
                 int a = r.Next(-500, 500);
                 int b = r.Next(-500, 500);
-                if ((Math.Min(500 - Math.Abs(a), 500 - Math.Abs(b))) < 10)
-                {
-                    a = r.Next(-500, 500);
-                    b = r.Next(-500, 500);
+                int sugar = 0;
+                if ((Math.Min(500 - Math.Abs(a), 500 - Math.Abs(b))) >= 10/* && EgybeCsusznakE(a,b)*/)
+                {                   
+                    sugar = r.Next(10, SugarGeneral(a,b));
+                    
                 }
-                else 
-                {                    
-                    int sugar = r.Next(10, Math.Min(500 - Math.Abs(a), 500 - Math.Abs(b)));
-                    körök.Add(new KOR(a, b, sugar, i + 1));
+                if (sugar != 0 && EgybeCsusznakE(a, b, sugar,i))
+                {
+                    korok.Add(new KOR(a, b, sugar, i + 1));
                 }
             }
             
         }
+
+        private int SugarGeneral(int a, int b)
+        {
+            int temp = Math.Min(500 - Math.Abs(a), 500 - Math.Abs(b)) / 2;
+            if (temp < 10)
+            {
+                Random r = new Random();
+                temp += r.Next(10, 50);
+            }
+            return temp;
+        }
+
+        private bool EgybeCsusznakE(int a, int b, int sugar,int i)
+        {
+            if (korok.Count() == 1)
+            { 
+                return true;
+            }
+
+            int k = 0;
+
+            //meg kell nézni hogy benne van e a kör teljesen mert ha igen ez nem fog működni
+            while (k< korok.Count() && (KetKorKoztiTav(new KOR(a, b, sugar, i), korok[k]) / (sugar + korok[k].r) >= 0.8))
+            {
+                k++;
+
+            }
+            return k >= korok.Count();
+
+        }
+
+        //private KOR Korgen(int i)
+        //{
+        //    return new KOR(a, b, sugar, i + 1);
+        //}
 
         /// <summary>
         /// Töröl minden háttér adatok és a kooridináta rendszert hogy új köröket rajzolhasson a felhasználó
@@ -452,7 +499,7 @@ namespace Kör_KM
         /// <param name="e"></param>
         private void button1_Click_2(object sender, EventArgs e)
         {
-            körök.Clear();
+            korok.Clear();
             korok_rajz.Enabled = true;
             comboBox1.Items.Clear();
             comboBox2.Items.Clear();
@@ -470,14 +517,19 @@ namespace Kör_KM
             try
             {
                 listBox3.Items.Clear();
-                listBox3.Items.Add("Sorszám: " + körök[listBox1.SelectedIndex].sorszam + ".");
-                listBox3.Items.Add("Közép pontja: (" + körök[listBox1.SelectedIndex].X() + "," + körök[listBox1.SelectedIndex].Y() + ")");
-                listBox3.Items.Add("Sugár: " + körök[listBox1.SelectedIndex].r);
-                listBox3.Items.Add("Kerület: " + körök[listBox1.SelectedIndex].K());
-                listBox3.Items.Add("Terület: " + körök[listBox1.SelectedIndex].T());
-                listBox3.Items.Add("Távolság az origótól: " + körök[listBox1.SelectedIndex].tav);
+                listBox3.Items.Add("Sorszám: " + korok[listBox1.SelectedIndex].sorszam + ".");
+                listBox3.Items.Add("Közép pontja: (" + korok[listBox1.SelectedIndex].X() + "," + korok[listBox1.SelectedIndex].Y() + ")");
+                listBox3.Items.Add("Sugár: " + korok[listBox1.SelectedIndex].r);
+                listBox3.Items.Add("Kerület: " + korok[listBox1.SelectedIndex].K());
+                listBox3.Items.Add("Terület: " + korok[listBox1.SelectedIndex].T());
+                listBox3.Items.Add("Távolság az origótól: " + korok[listBox1.SelectedIndex].tav);
             }
             catch { };
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
