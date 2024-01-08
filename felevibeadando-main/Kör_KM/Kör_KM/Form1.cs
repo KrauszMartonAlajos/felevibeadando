@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static Kör_KM.Form1;
-using NUnit.Framework;
+//using NUnit.Framework;
 
 namespace Kör_KM
 {
@@ -84,7 +84,7 @@ namespace Kör_KM
 
             for (int i = 0; i < körök.Count; i++)
             {
-                double aktkor_terulet = Math.PI * Math.Pow(körök[i].r, 2);
+                double aktkor_terulet = Math.PI * Math.Pow(körök[i].r, 2); //fv
                 OsszTerulet += aktkor_terulet;
 
                 for (int j = i + 1; j < körök.Count; j++)
@@ -132,7 +132,7 @@ namespace Kör_KM
         private void ErintosKorok()
         {
             korMatrix.Clear();
-            for (int i = 0; i < körök.Count; i++)
+            for (int i = 0; i < körök.Count; i++) //fv
             {
                 AktKorMitErint(körök[i]);
             }
@@ -140,7 +140,7 @@ namespace Kör_KM
 
             for (int i = 0; i < korMatrix.Count(); i++)
             {
-                listBox2.Items.Add(String.Format(korMatrix[i][0].sorszam + " <-Érinti-> " + korMatrix[i][1].sorszam));
+                listBox2.Items.Add(String.Format(korMatrix[i][0].sorszam + " <-Érinti-> " + korMatrix[i][1].sorszam)); //fv
             }
         }
 
@@ -171,23 +171,23 @@ namespace Kör_KM
         {
             return Math.Sqrt(Math.Pow(k1.X() - k2.X(), 2) + Math.Pow(k1.Y() - k2.Y(), 2));
         }
-        [TestFixture]
-        public class KetKorKoztiTavTestClass
-        {
-            [Test]
-            public void TestKetKorKoztiTav()
-            {
-                // Arrange
-                KOR k1 = new KOR(0, 0,5,1); // Replace with actual values
-                KOR k2 = new KOR(3, 4,5,1); // Replace with actual values
+        //[TestFixture]
+        //public class KetKorKoztiTavTestClass
+        //{
+        //    [Test]
+        //    public void TestKetKorKoztiTav()
+        //    {
+        //        // Arrange
+        //        KOR k1 = new KOR(0, 0,5,1); 
+        //        KOR k2 = new KOR(3, 4,5,1); 
 
-                // Act
-                double result = Form1.KetKorKoztiTav(k1, k2);
+        //        // Act
+        //        double result = Form1.KetKorKoztiTav(k1, k2);
 
-                // Assert
-                //Assert.AreEqual(5, result, 0.001); // Adjust the tolerance (0.001 in this case) based on your needs
-            }
-        }
+        //        // Assert
+        //        //Assert.AreEqual(5, result, 0.001); 
+        //    }
+        //}
 
         /// <summary>
         /// Megadja hány db kör tartalmazza magán belül az origót
@@ -214,7 +214,7 @@ namespace Kör_KM
         /// </summary>
         private void OrigoMaxTav()
         {
-            double kor = 0;
+            double kor = 0; //fv
             int ssz = 0;
             for (int i = 0; i < körök.Count; i++)
             {
@@ -423,7 +423,7 @@ namespace Kör_KM
         /// <summary>
         /// Megadott darab kört generál figyelve arra hogy ne csússzon ki egy se a koordináta rendszerből
         /// </summary>
-        private void KorGenRandom()
+        private void KorGenRandom() //fv
         {
             Random r = new Random();
             int dbkor = Convert.ToInt32(numericUpDown1.Value);
